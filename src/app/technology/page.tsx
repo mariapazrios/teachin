@@ -6,15 +6,15 @@ export default function TechnologyPage() {
   return (
     <div className="max-w-3xl mx-auto px-8 py-12">
       <PageHeader
-        label="Section 4 · Technology"
+        label="Section 3 · Technology"
         title="Technology & AMS"
-        description="The operating stack incumbents run on, why the AMS is irreplaceable in the short term, and why the ontology-first strategy is the right path to building above it."
+        description="The operating stack incumbents run on, why the AMS is the foundational element to rebuild, and how a modern agentic architecture unlocks margin, retention, and every downstream commercial lever."
       />
 
       <Section title="AMS market structure">
         <Card accent="blue" className="mb-4">
           <p className="text-sm text-white/70 leading-relaxed">
-            The agency management system (AMS) market is a <strong className="text-white/90">duopoly with a long tail</strong>. ~40,000 agencies, ~300–400,000 seats. Small TAM relative to enterprise software build cost — which is why incumbents have been able to charge rents without improvement for decades.
+            The agency management system (AMS) market is a <strong className="text-white/90">duopoly with a long tail</strong>. The two existing AMS systems have rigid schemas, batch-oriented architectures, and decades of accumulated tech debt — making feature work impossible to escape from the data model underneath.
           </p>
         </Card>
 
@@ -25,14 +25,14 @@ export default function TechnologyPage() {
                 <th className="text-left py-2 pr-4 text-xs text-white/35 font-medium">Vendor</th>
                 <th className="text-left py-2 pr-4 text-xs text-white/35 font-medium">Products</th>
                 <th className="text-left py-2 pr-4 text-xs text-white/35 font-medium">Owner</th>
-                <th className="text-left py-2 text-xs text-white/35 font-medium">Position</th>
+                <th className="text-left py-2 text-xs text-white/35 font-medium">Assessment</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
               {[
-                ["Applied Systems", "Applied Epic", "Hellman & Friedman + GIC", "~50%+ of mid-to-large agencies"],
-                ["Vertafore", "AMS360, BenefitPoint, ImageRight, Q5", "Roper Technologies", "The other duopolist; cloud-hosted, more modular"],
-                ["Smaller-agency tier", "HawkSoft, EZLynx, NowCerts, QQ Catalyst", "Various", "Primarily sub-$10M-revenue agencies"],
+                ["Applied Systems", "Applied Epic", "Hellman & Friedman + GIC", "No API. Highly litigious. Closed architecture. Avoid."],
+                ["Vertafore", "AMS360, BenefitPoint, ImageRight, Q5", "Roper Technologies", "Has API. More open architecture. Preferred."],
+                ["Smaller-agency tier", "HawkSoft, EZLynx, NowCerts, QQ Catalyst", "Various", "Sub-$10M agencies only"],
               ].map(([vendor, products, owner, pos]) => (
                 <tr key={vendor as string} className="hover:bg-white/[0.02] transition-colors">
                   <td className="py-3 pr-4 text-white/80 font-medium text-sm">{vendor}</td>
@@ -45,22 +45,116 @@ export default function TechnologyPage() {
           </table>
         </div>
 
-        <div className="space-y-2">
-          <div className="text-xs font-semibold tracking-wider text-white/30 uppercase mb-2">Adjacent layers most brokers also run</div>
+        <Card accent="amber">
+          <div className="text-sm font-semibold text-white/90 mb-2">Strong preference: AMS 360 (Vertafore) over Applied Epic</div>
+          <p className="text-sm text-white/60 leading-relaxed">
+            AMS 360 has an API and a generally more open architecture. Applied Epic has no API and is highly litigious. Neither platform is great, but AMS 360 is meaningfully better as a foundation for building above. An existing data warehouse capability (like Liberty or Sterling Seacrest) is a great starting point.
+          </p>
+        </Card>
+      </Section>
+
+      <Section title="Why the incumbents are structurally stuck">
+        <div className="space-y-3">
           {[
-            ["CRM overlays", "Salesforce Financial Services Cloud, Tarmika — producer-facing workflow on top of the AMS"],
-            ["Point solutions", "Comeulate (commission reconciliation), Indio (submissions), Patra (servicing), Power Broker AI (policy comparison)"],
-            ["External integrations", "Outlook, carrier portals, comparative raters"],
-          ].map(([label, body]) => (
-            <div key={label as string} className="flex gap-3 text-sm bg-white/[0.02] rounded-lg p-3 border border-white/5">
-              <span className="flex-shrink-0 text-xs font-semibold text-white/35 w-28">{label}</span>
-              <span className="text-white/45">{body}</span>
+            {
+              label: "Structural constraints",
+              body: "The two existing AMS systems have rigid schemas, batch-oriented architectures, and decades of accumulated tech debt. Feature work cannot escape the data model underneath.",
+              accent: "red" as const,
+            },
+            {
+              label: "Data entry problem",
+              body: "The middle- and back-office layers of insurance brokers spend ~60% of their time on manual data entry, re-keying, and document handling — a direct result of the system of record.",
+              accent: "red" as const,
+            },
+            {
+              label: "Point solutions make it worse",
+              body: "Every modern overlay and AI point-solution (proposal generators, COI tools, claims portals) compounds the integration tax rather than reducing it.",
+              accent: "red" as const,
+            },
+          ].map(({ label, body, accent }) => (
+            <Card key={label} accent={accent}>
+              <div className="text-sm font-semibold text-white/90 mb-1.5">{label}</div>
+              <p className="text-sm text-white/55 leading-relaxed">{body}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Current state vs. future state architecture">
+        <div className="grid grid-cols-2 gap-4 mb-5">
+          <div className="bg-red-500/5 border border-red-500/15 rounded-2xl p-5">
+            <div className="text-xs font-bold text-red-400/70 uppercase tracking-wider mb-3">Current State</div>
+            <div className="text-center text-xs font-semibold text-white/60 mb-3">AMS (Applied / Vertafore)</div>
+            <div className="grid grid-cols-2 gap-2">
+              {["Rating", "Proposal", "COI Tool", "Claims", "Comp", "BI / Reports", "Cert Mgr", "Doc Store", "E-sign", "Carrier APIs", "ERP"].map((item) => (
+                <div key={item} className="bg-white/[0.04] rounded-lg px-2 py-1.5 text-xs text-white/45 text-center">{item}</div>
+              ))}
+            </div>
+            <div className="mt-3 text-xs text-red-400/50 text-center">Integration tax compounds with every point solution added</div>
+          </div>
+          <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-2xl p-5">
+            <div className="text-xs font-bold text-emerald-400/70 uppercase tracking-wider mb-3">Future State</div>
+            <div className="space-y-2">
+              <div className="bg-blue-500/15 border border-blue-500/25 rounded-lg p-2.5 text-xs text-white/70 text-center font-semibold">LLM-Forward Pane of Glass<br/><span className="font-normal text-white/45">Primary Human Interface</span></div>
+              <div className="bg-purple-500/15 border border-purple-500/25 rounded-lg p-2.5 text-xs text-white/70 text-center font-semibold">Agentic Orchestration<br/><span className="font-normal text-white/45">Workflow sub-agents</span></div>
+              <div className="bg-emerald-500/15 border border-emerald-500/25 rounded-lg p-2.5 text-xs text-white/70 text-center font-semibold">Foundational Data Ontology Layer<br/><span className="font-normal text-white/45">Normalized, clean, agentic-ready</span></div>
+            </div>
+            <div className="mt-3 text-xs text-emerald-400/50 text-center">Each layer compounds value of layers above it</div>
+          </div>
+        </div>
+      </Section>
+
+      <Section title="What &ldquo;rebuild&rdquo; actually means">
+        <div className="space-y-3">
+          {[
+            {
+              title: "First-principles reimagination",
+              body: "Prior attempts at AMS modernization have taken an incremental '1-to-n' approach. Rethinking from '0-to-1' first principles enables competition on architecture instead of capabilities.",
+              accent: "green" as const,
+            },
+            {
+              title: "The primitives",
+              body: "A normalized data layer as the foundation supports an agentic orchestration layer and a fundamentally reimagined pane of glass for human + AI operating system.",
+              accent: "green" as const,
+            },
+            {
+              title: "The job gets smaller and faster",
+              body: "Renewal prep, transactional processing (COIs, endorsements) and claims intake become automated, shrinking the unit of workflow itself — not just increasing speed.",
+              accent: "green" as const,
+            },
+            {
+              title: "Build cost: AI era vs. pre-AI era",
+              body: "Prior tech-native rebuild required $100M / 6 years / 100 engineers in the pre-AI-coding era. Today's tooling compresses to ~$10M / 6–12 months / 10–15 forward-deployed engineers.",
+              accent: "green" as const,
+            },
+          ].map(({ title, body, accent }) => (
+            <Card key={title} accent={accent}>
+              <div className="text-sm font-semibold text-white/90 mb-1.5">{title}</div>
+              <p className="text-sm text-white/55 leading-relaxed">{body}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Why the rebuild creates durable leverage">
+        <div className="space-y-2">
+          {[
+            ["Margin", "Optimization and efficiency flows through every functional area as an output of systems innovation, not an input. Humans are freed up to work at highest-and-best-use instead of data entry."],
+            ["Retention", "When workflows are orchestrated end-to-end with AI, speed and service quality step-change, driving customer stickiness to the platform instead of the producer."],
+            ["Cross-sell", "The data layer is the pre-condition to sales enablement applications supporting producers. Every commercial lever downstream flows from this foundation."],
+            ["Platform-for-producers", "With a reimagined service delivery organization, producers have something truly differentiated to sell to their customers, driving organic growth, book-size, and new producer attraction."],
+            ["M&A", "Acquisitions migrate onto one chassis instead of rolling into separate systems, unlocking a fundamentally different synergy profile vs. every competing aggregator."],
+            ["Switching cost shift", "Moves client switching cost from producer-relationship to platform-workflow — a SaaS-style moat applied to a traditionally relationship-driven industry."],
+          ].map(([title, body]) => (
+            <div key={title as string} className="bg-white/[0.03] rounded-xl p-4 border border-white/6">
+              <div className="text-sm font-semibold text-white/80 mb-1">{title}</div>
+              <div className="text-sm text-white/45 leading-relaxed">{body}</div>
             </div>
           ))}
         </div>
       </Section>
 
-      <Section title="What an AMS contains">
+      <Section title="What the AMS contains">
         <div className="text-xs font-semibold tracking-wider text-white/30 uppercase mb-3">Six functional subsystems</div>
         <div className="space-y-2 mb-5">
           {[
@@ -97,106 +191,19 @@ export default function TechnologyPage() {
         <div className="mt-2 text-xs text-white/35 text-center">Together account for ~80% of daily transactional work</div>
       </Section>
 
-      <Section title="Sources of AMS complexity">
-        <div className="space-y-2">
-          {[
-            ["Carrier counterparty cardinality", "100–200 carriers per broker. Each has its own downloads, field naming, commission structures, policy form variants, upload requirements."],
-            ["State regulatory heterogeneity", "50 state insurance departments. Filings, surplus lines, licensing, premium tax, and disclosures all vary by state. Federal layers on top (NFIP, terrorism, ERISA)."],
-            ["ACORD form universe", "~800 standard forms. Many have regional and carrier-specific variants. Forms get updated; old policies reference old versions."],
-            ["Multi-year policy lifecycle", "Policies renew indefinitely. Endorsements modify state retroactively. Claims tail 7+ years. Append-only, time-aware data model required."],
-            ["Documents as legal record", "PDFs are the source of truth; AMS fields are derivative. Requires OCR, classification, indexing, and retention of millions of documents per agency."],
-            ["Per-agency customization", "Each installation carries years of workflow customization. Two agencies on the same AMS look meaningfully different operationally."],
-            ["Switching cost", "Industry consensus: replacing an AMS is an operational nightmare. The market is locked because no agency wants to be the guinea pig."],
-          ].map(([title, body]) => (
-            <div key={title as string} className="bg-white/[0.03] rounded-xl p-4 border border-white/6">
-              <div className="text-sm font-semibold text-white/80 mb-1">{title}</div>
-              <div className="text-sm text-white/45 leading-relaxed">{body}</div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section title="Why we can't just replace the AMS">
+      <Section title="Why we can&apos;t replace the AMS like BankSouth&apos;s LOS">
         <Card accent="red" className="mb-4">
-          <div className="text-sm font-semibold text-white/90 mb-2">Not like BankSouth&apos;s LOS</div>
+          <div className="text-sm font-semibold text-white/90 mb-2">The AMS is a more complex system of record</div>
           <p className="text-sm text-white/60 leading-relaxed">
-            We cannot replace an AMS as quickly as Sequence replaced the LOS at BankSouth. The BankSouth LOS was a single-product, finite-lifecycle, bounded-counterparty system with ~150 standardized forms. An AMS is multi-product, indefinite-lifecycle, with 100–200+ carrier counterparties, ~800 ACORD forms, 50 state regulators, and append-only policy state.
+            The BankSouth LOS was a single-product, finite-lifecycle, bounded-counterparty system with ~150 standardized forms. An AMS is multi-product, indefinite-lifecycle, with 100–200+ carrier counterparties, ~800 ACORD forms, 50 state regulators, and append-only policy state. The AMS also functions as an accounting system — existing architectures are closed, necessitating significant engineering work to read/write out of the existing system, or building a net-new system of record.
           </p>
         </Card>
-        <div className="bg-white/[0.03] rounded-xl p-4 border border-white/6">
-          <div className="text-xs text-white/40 uppercase tracking-wider font-semibold mb-2">Real-world data point</div>
-          <p className="text-sm text-white/55 leading-relaxed">
-            Newfront spent ~6 years and ~$100M on engineering to rebuild the AMS pre-AI. Even best-in-class Risk Strategies ($9.8B sale) ran 60 AMS instances. The integration tax is real and eats the margin expansion sponsors underwrite.
-          </p>
-        </div>
-      </Section>
-
-      <Section title="The ontology-first strategy">
-        <Card accent="green" className="mb-5">
-          <div className="text-sm font-semibold text-white/90 mb-2">Sequencing: ontology first. Everything else compounds on it.</div>
+        <Card accent="green">
+          <div className="text-sm font-semibold text-white/90 mb-2">The difficulty creates the moat</div>
           <p className="text-sm text-white/60 leading-relaxed">
-            The data ontology layer is what makes the rest of the strategy possible without first replacing the system of record. With ontology in place, we can build product capabilities above the AMS, build adjacent systems (vertical agents, MGA platforms, M&A integration tooling), and eventually evaluate selective AMS component replacement once operator credibility is established.
+            No incumbent broker will be able to execute an initiative of this scale without a partner like Sequence. The architectural pattern — normalized data layer + agentic orchestration backbone + LLM chat as primary interface — is reusable across vertical-system-of-record opportunities beyond brokerage.
           </p>
         </Card>
-
-        <div className="text-xs font-semibold tracking-wider text-white/30 uppercase mb-3">Above the AMS — consumer data layer to deliver capabilities</div>
-        <div className="space-y-2 mb-5">
-          {[
-            ["Producer copilot", "Lead scoring, account research, prep, follow-up", "New-business win rate; sales velocity"],
-            ["Quote orchestration", "Market-access multiplication", "Win rate; recapture of wholesale margin"],
-            ["Client-facing benchmarking", "Show clients how their coverage compares", "Win rate; pricing power on fees"],
-            ["Coverage-gap diagnostics", "Continuous AI-driven gap analysis", "Retention; E&O risk reduction"],
-            ["Mid-term re-marketing", "Proactively shop at renewal", "Retention; client savings delivered"],
-            ["AI-driven claims advocacy", "Intelligent claims support", "Retention; moment-of-truth differentiation"],
-          ].map(([lever, detail, metric]) => (
-            <div key={lever as string} className="bg-white/[0.03] rounded-lg p-3.5 border border-white/6">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <span className="text-sm font-semibold text-white/80">{lever}</span>
-                  <span className="text-sm text-white/40 ml-2">{detail}</span>
-                </div>
-                <span className="flex-shrink-0 text-xs text-emerald-400/60 text-right">{metric}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-xs font-semibold tracking-wider text-white/30 uppercase mb-3">Adjacent to the AMS</div>
-        <div className="space-y-2">
-          {[
-            ["Vertical intelligence agents", "Construction, transportation, etc.", "Win rate in specialty; defensible niche"],
-            ["Internal MGA / program platforms", "Capture underwriting economics", "Margin expansion; new product creation"],
-            ["M&A integration tooling", "Post-close data migration", "Tuck-in magnetism"],
-            ["Producer P&L granularity", "Comp optimization data", "Talent retention"],
-          ].map(([lever, detail, metric]) => (
-            <div key={lever as string} className="bg-white/[0.03] rounded-lg p-3.5 border border-white/6">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <span className="text-sm font-semibold text-white/80">{lever}</span>
-                  <span className="text-sm text-white/40 ml-2">{detail}</span>
-                </div>
-                <span className="flex-shrink-0 text-xs text-indigo-400/60 text-right">{metric}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section title="Notable industry observations">
-        <div className="space-y-2">
-          {[
-            "Applied Epic does not provide open API access. Vertafore does, selectively for larger customers.",
-            "Most mid-market brokers run 4–12 point solutions alongside the AMS plus Outlook and Excel for the gaps.",
-            "Industry standard cost structure: service 20–25% of revenue; producer comp 25–35%; G&A 5–7%; typical EBITDA ~30%.",
-            "AI transformation in insurance is in its 'far infancy.' — Steve Brown / Acrisure, 3/31",
-            "The AMS is rated as 'poor' by operators across the board — Applied Epic and AMS360 both widely disliked. No one has built a credible replacement.",
-          ].map((obs, i) => (
-            <div key={i} className="flex gap-3 text-sm bg-white/[0.02] rounded-lg p-3 border border-white/5">
-              <span className="flex-shrink-0 text-white/20">→</span>
-              <span className="text-white/50 leading-relaxed">{obs}</span>
-            </div>
-          ))}
-        </div>
       </Section>
     </div>
   );

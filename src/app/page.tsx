@@ -5,7 +5,7 @@ const sections = [
     href: "/thesis",
     icon: "◎",
     label: "The Thesis",
-    summary: "Why insurance brokerage, why now, why Sequence — and the canonical buy box.",
+    summary: "What is a broker, the 5-point thesis, evaluation framework, platform buy box, and key risks.",
     color: "from-blue-500/10 to-transparent",
     border: "border-blue-500/20",
     tag: "Strategy",
@@ -14,7 +14,7 @@ const sections = [
     href: "/market",
     icon: "◐",
     label: "Market Dynamics",
-    summary: "The PE forced-sale window 2026–2028, mid-market squeeze, and the structural buy window.",
+    summary: "The ~$2T US market, P&C value chain, soft market data, public broker multiples, precedent M&A transactions, and fragmentation stats.",
     color: "from-purple-500/10 to-transparent",
     border: "border-purple-500/20",
     tag: "Market",
@@ -23,7 +23,7 @@ const sections = [
     href: "/producers",
     icon: "◉",
     label: "Producer Economics",
-    summary: "Producers own the relationships. Their power dynamics, compensation, book retention, and departure risk.",
+    summary: "Producer power dynamics, operator benchmarking, comp structures, departure risk, and the pip count lever.",
     color: "from-amber-500/10 to-transparent",
     border: "border-amber-500/20",
     tag: "Operations",
@@ -32,7 +32,7 @@ const sections = [
     href: "/technology",
     icon: "⬡",
     label: "Technology & AMS",
-    summary: "The AMS duopoly, why replacement is a multi-year program, and why ontology-first is the right strategy.",
+    summary: "Why incumbents are structurally stuck, current vs. future state architecture, and why the rebuild creates durable leverage.",
     color: "from-emerald-500/10 to-transparent",
     border: "border-emerald-500/20",
     tag: "Technology",
@@ -41,7 +41,7 @@ const sections = [
     href: "/value-creation",
     icon: "◆",
     label: "Value Creation",
-    summary: "How Sequence Refounds a brokerage — the margin bridge, AI operating model, and the path to $1B EBITDA.",
+    summary: "Five levers: AMS rebuild, sales enablement, talent flywheel, strategic M&A, and vertical integration.",
     color: "from-indigo-500/10 to-transparent",
     border: "border-indigo-500/20",
     tag: "Finance",
@@ -49,12 +49,12 @@ const sections = [
 ];
 
 const keyNumbers = [
-  { value: "100K+", label: "US insurance brokers", sub: "High M&A velocity" },
-  { value: "60%", label: "Producer time on admin", sub: "vs. client relationships" },
-  { value: "~30%", label: "Industry EBITDA margin", sub: "22–23% in soft cycle" },
-  { value: "10–15pts", label: "Margin available from AI", sub: "Middle/back-office automation" },
-  { value: "~100", label: "PE-backed platforms", sub: "Hypercompetitive segment" },
-  { value: "2026–28", label: "Structural buy window", sub: "PE forced-sale vintage" },
+  { value: "~$2T", label: "US insurance market (P&C + L&H)", sub: "P&C crossed $1T for first time in 2024" },
+  { value: "$22B", label: "Retail broker US profit pool", sub: "27–35% EBITDA margins" },
+  { value: "60%", label: "Producer time on admin", sub: "vs. client-facing work" },
+  { value: "10–15pts", label: "Margin available from AI", sub: "30–35% today → 45–50%+ steady state" },
+  { value: "27,471", label: "Total US retail broker firms", sub: "Top 76 firms = ~55–65% of revenue" },
+  { value: "15.0x", label: "Precedent M&A median multiple", sub: "vs. public trading at ~10–13x today" },
 ];
 
 export default function Home() {
@@ -65,10 +65,10 @@ export default function Home() {
         <div className="text-xs font-semibold tracking-[0.2em] text-[#5a5a7a] uppercase mb-4">Sequence Holdings · M&A</div>
         <h1 className="text-4xl font-bold text-white tracking-tight mb-4 leading-tight">
           Insurance Brokerage<br />
-          <span className="text-white/40">What We Know</span>
+          <span className="text-white/40">Thesis Deck · May 2026</span>
         </h1>
         <p className="text-[16px] text-white/50 leading-relaxed max-w-2xl">
-          Everything Sequence has learned about insurance brokerage — synthesized from expert calls, market research, operator interviews, and industry data collected through May 2026.
+          Everything Sequence has learned about insurance brokerage — synthesized from expert calls, market research, operator interviews, and industry data. Updated from Broker Thesis Deck v6, May 2026.
         </p>
       </div>
 
@@ -90,7 +90,7 @@ export default function Home() {
       <div className="mb-12 bg-white/[0.03] rounded-2xl p-6 border border-white/6 border-l-2 border-l-blue-500/50">
         <div className="text-xs font-semibold tracking-[0.15em] text-blue-400/70 uppercase mb-3">Simple Thesis</div>
         <p className="text-[17px] text-white/85 leading-relaxed">
-          Insurance brokerage is a <strong className="text-white">high-retention, high-margin, recession-resistant</strong> distribution business where the admin layer — currently 33¢ of every revenue dollar — is a pure AI automation target. Sequence acquires a mid-market independent, rebuilds the operating chassis with an Atlas-powered data ontology above the AMS, and redeploys saved margin into producer comp and sales tooling to create a talent magnet with a <strong className="text-white">self-reinforcing organic growth flywheel.</strong>
+          Insurance brokerage is a <strong className="text-white">high-retention, high-margin, recession-resistant</strong> distribution business where the admin layer — currently ~60% of producer and service-staff time — is a pure AI automation target. A modern stack (normalized data layer + agentic orchestration + LLM pane of glass) doesn&apos;t compete with AMS incumbents on feature parity — it makes the underlying job smaller. The defensibility shift matters more than the cost line: when workflow lives in the chassis rather than the producer&apos;s head, book stickiness travels with the platform.
         </p>
       </div>
 
